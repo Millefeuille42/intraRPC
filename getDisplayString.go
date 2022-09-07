@@ -46,6 +46,7 @@ func emoteSelector(bh time.Time, emoji bool) string {
 }
 
 func getDisplayString(emoji bool) (loc, level, bh, emote string) {
+	time.Sleep(1 * time.Second)
 	user, err := client.GetUser(os.Getenv("LOGNAME"))
 	if err != nil {
 		log.Fatal(err)
@@ -58,7 +59,7 @@ func getDisplayString(emoji bool) (loc, level, bh, emote string) {
 	loc = fmt.Sprintf("%s@%s", user.Login, user.Location)
 	if user.CursusUsers != nil && len(user.CursusUsers) > 0 && len(os.Args) >= 2 {
 		for _, cursus := range user.CursusUsers {
-			if cursus.Cursus.Slug == os.Args[1] {
+			if cursus.Cursus.Slug == conf.Cursus {
 				level = fmt.Sprintf("Level: %.2f", cursus.Level)
 				if time.Until(cursus.BlackholedAt) > 0 {
 					bh = fmt.Sprintf("Blackhole: %.0f days",
