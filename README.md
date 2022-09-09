@@ -1,6 +1,10 @@
 # intraRPC
 
 intraRPC is a rich presence client for 42.
+
+![Example](assets/example.png)
+
+It displays various emojis depending on your blackhole status.
 ## Acquire the binary
 
 ### From the prebuilt binary
